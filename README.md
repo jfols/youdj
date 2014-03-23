@@ -1,1 +1,6 @@
-Liftoff - Get your Meteor project off the ground.
+YouDJ
+=====
+
+Realtime Social Music
+
+...more coming soon.
