@@ -1,7 +1,19 @@
 <template name='home'>
-  <h1>Liftoff</h1>
-  <h2>Get your Meteor project off the ground.</h2>
-  <div style='height: 700px'></div>
-  <h3>Can u haz sticky nav?</h2>
-  <img src="http://thecatapi.com/api/images/get?format=src&type=gif">
+  <h1>YouDJ</h1>
+  <h2>Realtime Social Music</h2>
+  <ol>
+    <li>Create a station.</li>
+    <li>Queue some tracks.</li>
+    <li>Start the show!</li>
+  </ol>
+  {{#if currentUser}}
+  <p>Share the link to your station and listeners can (vote|comment|?).</p>
+  <a href='{{pathFor "createStation"}}'>
+    <button class='btn btn-primary btn-lg'>
+      <span class='glyphicon glyphicon-plus'></span> Create Station
+    </button>
+  </a>
+  {{else}}
+  <p>Login or sign up to start!</p>
+  {{/if}}
 </template>

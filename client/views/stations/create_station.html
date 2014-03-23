@@ -1,0 +1,18 @@
+<template name="createStation">
+  Create a station
+  {{#autoForm schema="Stations" id="createStationForm"}}
+  <fieldset>
+    <legend>Create a station</legend>
+    <div class="form-group{{#if afFieldIsInvalid 'name'}} has-error{{/if}}">
+      {{afFieldLabel 'name'}}
+      {{afFieldInput 'name'}}
+      {{#if afFieldIsInvalid 'name'}}
+        <span class="help-block">{{afFieldMessage 'name'}}</span>
+      {{/if}}
+    </div>
+  </fieldset>
+  <button type="submit" class="btn btn-success insert">
+    <span class="glyphicon glyphicon-plus"></span> Create Station
+  </button>
+  {{/autoForm}}
+</template>

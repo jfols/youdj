@@ -1,0 +1,8 @@
+<template name="browseStations">
+  <h2>Stations</h2>
+  <ul>
+    {{#each stations}}
+      <li><a href="{{pathFor 'station'}}">{{name}}</a></li>
+    {{/each}}
+  </ul>
+</template>
