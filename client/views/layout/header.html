@@ -12,6 +12,11 @@
       <ul class='nav navbar-nav'>
         <li class='{{activeRouteClass "home"}}'><a href='{{pathFor "home"}}'><span class='glyphicon glyphicon-home'></span></a></li>
         <li class='{{activeRouteClass "browseStations"}}'><a href='{{pathFor "browseStations"}}'>Stations</a></li>
+        {{#if currentUser}}
+          {{#with user}}
+            <li class='{{activeRouteClass "browseStations"}}'><a href='{{pathFor "userStations"}}'>DJ</a></li>
+          {{/with}}
+        {{/if}}
       </ul>
       <ul class='nav navbar-nav navbar-right'>
         {{loginButtons}}

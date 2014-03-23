@@ -1,0 +1,30 @@
+<template name="djStation">
+  <h2>DJ Controller</h2>  
+  <h3>Up Next</h3>
+  {{#isolate}}
+  {{#each station.queue}}
+    {{> track}}
+  {{/each}}
+  {{/isolate}}
+
+  <hr>
+  {{#isolate}}
+    <iframe class="iframe" width="100%" height="450" scrolling="no" frameborder="no" src="{{currentTrackUrl}}"></iframe>
+  {{/isolate}}
+  <hr>
+  <form>
+    <fieldset>
+      <legend>Search For Tracks</legend>
+      <div class="form-group">
+        <label for="searchQuery">Search:</label>
+        <input type="text" class="form-control" id="searchQuery" placeholder="">
+      </div>
+    </fieldset>
+     <button class="btn btn-primary search">Search</button>
+  </form>
+  {{#isolate}}
+    {{#each searchResultsTracks}}
+      {{> trackSearchResult}}
+    {{/each}}
+  {{/isolate}}
+</template>

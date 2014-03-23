@@ -1,0 +1,14 @@
+<template name="userStations">
+  <h1>{{username}}'s stations</h1>
+  <ul>
+    {{#each stations}}
+      <li><a href="{{pathFor 'djStation'}}">{{name}}</a></li>
+    {{/each}}
+  </ul>
+  <hr>
+  <a href="{{pathFor 'createStation'}}">
+    <button class="btn btn-primary btn-lg">
+      <span class="glyphicon glyphicon-plus"></span> New station
+    </button>
+  </a>
+</template>

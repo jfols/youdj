@@ -1,4 +1,7 @@
 Template.header.helpers({
+  user: function () {
+    return Meteor.user();
+  },
   activeRouteClass: function (/* route names */) {
     //turn args into a regular javascript array
     var args = Array.prototype.slice.call(arguments, 0);

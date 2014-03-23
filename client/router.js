@@ -37,4 +37,25 @@ Router.map( function () {
     }
   });
   
+  this.route('userStations', {
+    path: '/stations/:username',
+    waitOn: function () {
+      Meteor.subscribe('userStations', this.params.username);
+    },
+    data: function () {
+      return { stations: Stations.find({username: this.params.username}) };
+    }
+  });
+  
+  this.route('djStation', {
+    path: '/djStation/:_id',
+    waitOn: function () {
+      Meteor.subscribe('djStation', this.params._id);
+    },
+    data: function () {
+      return  { station: Stations.findOne() };
+    }
+  });
 });
+
+Router.before(function() { Session.set('routeParamId', this.params._id); });
