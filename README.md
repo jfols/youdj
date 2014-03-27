@@ -1,6 +1,8 @@
 YouDJ
 =====
 
+[![Stories in Ready](https://badge.waffle.io/jfols/youdj.png)](http://waffle.io/jfols/youdj)
+
 A realtime social music listening experience.
 
 Demo: [youdj.meteor.com](http://youdj.meteor.com)
