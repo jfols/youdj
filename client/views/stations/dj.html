@@ -5,7 +5,9 @@
     {{> track}}
   {{/each}}
   <hr>
-    <iframe class="iframe" width="100%" height="450" scrolling="no" frameborder="no" src="{{currentTrackUrl}}"></iframe>
+  <button class='btn btn-primary skip'>Skip</button>
+  <hr>
+    <iframe id='iframeDJSC' class="iframe" width="100%" height="450" scrolling="no" frameborder="no" src="{{currentTrackUrl}}"></iframe>
   <hr>
   <form>
     <fieldset>

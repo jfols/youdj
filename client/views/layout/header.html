@@ -10,11 +10,11 @@
     </div>
     <div class='navbar-collapse collapse navbar-responsive-collapse'>
       <ul class='nav navbar-nav'>
-        <li class='{{activeRouteClass "home"}}'><a href='{{pathFor "home"}}'><span class='glyphicon glyphicon-home'></span></a></li>
-        <li class='{{activeRouteClass "browseStations"}}'><a href='{{pathFor "browseStations"}}'>Stations</a></li>
+        <li><a href='{{pathFor "home"}}'><span class='glyphicon glyphicon-home'></span></a></li>
+        <li><a href='{{pathFor "browseStations"}}'>Stations</a></li>
         {{#if currentUser}}
-          {{#with user}}
-            <li class='{{activeRouteClass "browseStations"}}'><a href='{{pathFor "userStations"}}'>DJ</a></li>
+          {{#with currentUser}}
+            <li><a href='{{pathFor "userStations"}}'>DJ</a></li>
           {{/with}}
         {{/if}}
       </ul>
