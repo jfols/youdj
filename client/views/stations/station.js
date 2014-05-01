@@ -10,15 +10,29 @@ Template.station.helpers({
 });
 
 Template.station.rendered = function () {
-  var iframe = document.querySelector('.iframe');
-  var widget = SC.Widget(iframe);
-  var currentTrackStartTime = this.data.currentTrackStartTime;
-  widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(event) {
-    var startTimeDelta = Date.now() - currentTrackStartTime;
-    /* set arbitrary threshold for seeking, 10 seconds? */
-    if (startTimeDelta > 10000) {
-      widget.seekTo(startTimeDelta);
+    /* hax...wait a couple seconds for track to load */
+  Meteor.setTimeout(function () {
+    console.log('in timeout function');
+    try {
+      var iframe = document.querySelector('.iframe');
+      var widget = SC.Widget(iframe);
+      console.log(this);
+      var currentTrackStartTime = this.data.currentTrackStartTime;
+      
+      widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(event) {
+        var startTimeDelta = Date.now() - currentTrackStartTime;
+        /* set arbitrary threshold for seeking, 10 seconds? */
+        console.log('delta: ',startTimeDelta);
+        if (startTimeDelta > 10000) {
+          widget.seekTo(startTimeDelta);
+        }
+        this.unbind(SC.Widget.Events.PLAY_PROGRESS);
+      });
+      console.log('did it');
     }
-    this.unbind(SC.Widget.Events.PLAY_PROGRESS);
-  });
+    catch (error) {
+      console.log(error);
+      console.log('fail');
+    }
+  }, 3000);
 };

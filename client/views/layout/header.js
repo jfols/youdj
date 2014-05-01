@@ -8,7 +8,12 @@ Template.header.helpers({
     // remove the hash added by at the end by Handlebars
     args.pop();
     var active = _.any(args, function(name) {
-      return Router.current().route.name === name;
+      try {
+        return Router.current().route.name === name;
+      }
+      catch (error) {
+        return false;
+      }
     });
     
     return active && 'active';

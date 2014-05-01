@@ -58,4 +58,4 @@ Router.map( function () {
   });
 });
 
-Router.before(function() { Session.set('routeParamId', this.params._id); });
+Router.onBeforeAction(function() { Session.set('routeParamId', this.params._id); });

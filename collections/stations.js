@@ -23,6 +23,7 @@ Stations = new Meteor.Collection('stations', {
           return this.unset();
         }
       },
+      optional: true,
       denyUpdate: true
     },
     username: {
@@ -35,6 +36,7 @@ Stations = new Meteor.Collection('stations', {
           return this.unset();
         }
       },
+      optional: true,
       denyUpdate: true
     },
     name: {
@@ -64,41 +66,15 @@ Stations = new Meteor.Collection('stations', {
 });
 
 if (Meteor.isClient) {
-  StationForm = new AutoForm(Stations);
-  TrackForm = new AutoForm(TrackSchema);
   Meteor.startup(function() {
-    StationForm.hooks({
-      before: {
-        insert: function (doc) {
-          //modify doc
-          return doc;
-        }
-      },
-      after: {
-        insert: function(error, result, template) {
-          if (error) {
-            console.log(error);
-            alertMessage(error.message, "danger");
-          }
-          else {
-            // do some things 
-          }
-        },
-        update: function(error, result, template) {
-          if (error) {
-            console.log(error);
-            alertMessage(error.message, "danger");
-          }
-          else {
-            // do some things
-          }
-        }
+    AutoForm.addHooks(['createStationForm'], {
+      onError: function (operation, error, template) {
+        console.log(error);
+        alertMessage(error.message, "danger");
       }
     });
   });
 }
-
-
 
 /* owner of station can insert/update/remove */
 Stations.allow({
@@ -116,32 +92,6 @@ Stations.allow({
 // Methods
 
 Meteor.methods({
-  createstation: function(stationAttributes){
-    var user = Meteor.user();
-    
-    // ensure the user is logged in
-    if (!user) {
-      throw new Meteor.Error(401, "You need to login to create new station.");
-    }
-    
-    // check for title and description
-    if (!stationAttributes.name) {
-      throw new Meteor.Error(422, "You need a station name.");
-    }
-    
-    // pick out the whitelisted keys
-    var station = _.extend(_.pick(stationAttributes, 'name'), 
-                           {
-                             userId: user._id,
-                             owner: user.username,
-                             created: new Date().getTime()
-                           });
-    
-    if (can.createstation()) {
-      var stationId = stations.insert(station);
-      return stationId;
-    }
-  },
   queueTrack: function (stationId, track) {
     var station = Stations.findOne(stationId);
     if (can.editStation(station)) {
